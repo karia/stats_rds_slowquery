@@ -6,7 +6,7 @@ INSTANCE_IDENTIFIER=$1
 SLOW_LOG=mysqlslow_${INSTANCE_IDENTIFIER}_`date +%Y-%m-%d`_raw.txt
 DUMP_TXT=mysqlslow_${INSTANCE_IDENTIFIER}_`date +%Y-%m-%d`.txt
 
-TIMESTAMP=`expr $(gdate --date '24 hours ago' +%s%N) / 1000000`
+TIMESTAMP=`expr $(date --date '24 hours ago' +%s%N) / 1000000`
 FILELIST=`aws rds describe-db-log-files --db-instance-identifier ${INSTANCE_IDENTIFIER} --filename-contains slowquery/mysql-slowquery.log. --no-paginate --file-last-written ${TIMESTAMP} --query 'DescribeDBLogFiles[].LogFileName' --output text`
 
 cd `dirname $0`
