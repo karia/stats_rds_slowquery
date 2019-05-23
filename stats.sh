@@ -18,5 +18,5 @@ do
 done
 mysqldumpslow -t 20 -s t ${SLOW_LOG} > ${DUMP_TXT}
 
-curl -F file=@${DUMP_TXT} -F channels=${SLACK_CHANNEL} -F token=${SLACK_TOKEN} https://slack.com/api/files.upload
+curl -sS -F file=@${DUMP_TXT} -F channels=${SLACK_CHANNEL} -F token=${SLACK_TOKEN} https://slack.com/api/files.upload
 rm ${SLOW_LOG} ${DUMP_TXT}
